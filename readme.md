@@ -7,8 +7,8 @@ Install [Node.js](https://nodejs.org/en/download) if you don't have one. You nee
 Clone this repository from [GitHub](https://github.com/qurle/screenshot-pages) or download then unzip it.
 #### Step 3
 Fill `params.json` with parameters you need. You can customize format, dimensions, pixel ratio and more. Don't forget to put array of links to the needed pages.
+##### Example of params.json
 ```json
-// Example of params.json
 {
     "path": "./screenshots",
     "useAdblock": true,
