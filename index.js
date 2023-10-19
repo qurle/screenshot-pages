@@ -6,6 +6,9 @@ import fetch from 'cross-fetch'
 import params from './params.json' with { type: "json" };
 
 const maxMobileWidth = 480;
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 (async () => {
     const browser = await launch({ headless: "new" })
@@ -39,6 +42,10 @@ const maxMobileWidth = 480;
             })
 
             if (!existsSync(params.path)) mkdirSync(params.path)
+
+            if (params.waitFor?.endsWith('ms')) await timeout(params.waitFor.slice(0, -2))
+            else if (params.waitFor?.endsWith('s')) await timeout(params.waitFor.slice(0, -1) * 1000)
+            else if (params.waitFor?.endsWith('m')) await timeout(params.waitFor.slice(0, -1) * 60000)
 
             const url = new URL(link)
             console.log(`Screenshoting ${url.hostname}${url.pathname} at ${width}×${height}`)

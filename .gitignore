@@ -26,3 +26,6 @@ jspm_packages/
 
 # Screenshot folder
 screenshots/
+
+# Params.json
+.params.json

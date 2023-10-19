@@ -18,6 +18,7 @@ Fill `params.json` with parameters you need. You can customize format, dimension
     ],
     "format": "png",
     "scale": "2x",
+    "waitFor": "1s",
     "fullPage": false,
     "pages": [
         "https://google.com",

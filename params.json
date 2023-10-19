@@ -8,6 +8,7 @@
     "format": "png",
     "scale": "2x",
     "fullPage": false,
+    "waitFor": "1s",
     "pages": [
         "https://google.com",
         "https://linkedin.com",
