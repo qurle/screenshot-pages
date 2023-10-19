@@ -1,16 +1,22 @@
 {
   "name": "screenshot-pages",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bulk screnshot pages with desired resolution",
   "main": "index.js",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qurle/screenshot-pages.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "bulk",
+    "screenshot",
+    "websites",
+    "pages",
+    "puppeteer"
+  ],
+  "author": "Nick Qurle",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/qurle/screenshot-pages/issues"
   },

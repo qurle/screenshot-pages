@@ -1,33 +1,16 @@
 {
+    "path": "./screenshots",
+    "useAdblock": true,
     "viewports": [
         "1440x900",
         "360x900"
     ],
+    "format": "png",
     "scale": "2x",
     "fullPage": false,
     "pages": [
-        "https://samolet.ru/promo-ipoteka/",
-        "https://fortis-development.ru/purchase?type=mortgage",
-        "https://www.pik.ru/mortgage",
-        "https://dogma.ru/mortgage",
-        "https://tochno.life/mortgage/",
-        "https://sskuban.ru/varianty-pokupki-kvartiry/",
-        "https://www.mr-group.ru/mortgage/",
-        "https://a101.ru/ipoteka/choices",
-        "https://moskva.brusnika.ru/ipoteka/",
-        "https://group-akvilon.ru/payments/mortgage/",
-        "https://www.ingrad.ru/mortgage",
-        "https://www.absrealty.ru/purchase/mortgage/",
-        "https://strana.com/msk/purchase",
-        "https://level.ru/purchase/mortgage/",
-        "https://grad1.ru/how-to-buy/mortgage/",
-        "https://msk-development.ru/mortgage",
-        "https://www.cds.spb.ru/buy/mortgage/",
-        "https://glorax.com/mortgage",
-        "https://rsti.ru/spb/ways/mortgage",
-        "https://4d.life/purchase/mortgage/",
-        "https://krost.ru/purchase/mortgage/",
-        "https://etalongroup.ru/spb/",
-        "https://www.rbi.ru/howtobuy/mortgage/"
+        "https://google.com",
+        "https://linkedin.com",
+        "https://qurle.net/"
     ]
 }
