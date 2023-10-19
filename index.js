@@ -1,5 +1,8 @@
 import { launch } from 'puppeteer'
 import { existsSync, mkdirSync } from 'fs'
+import { PuppeteerBlocker } from '@cliqz/adblocker-puppeteer'
+import fetch from 'cross-fetch'
+
 import params from './params.json' with { type: "json" };
 
 const maxMobileWidth = 480
@@ -8,6 +11,10 @@ const screenshotPath = './screenshots';
 (async () => {
     const browser = await launch({ headless: "new" })
     const page = await browser.newPage()
+
+    PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+        blocker.enableBlockingInPage(page);
+    });
 
     for (let link of params.pages) {
 

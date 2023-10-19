@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/qurle/screenshot-pages#readme",
   "dependencies": {
+    "@cliqz/adblocker-puppeteer": "^1.26.8",
     "fs": "^0.0.1-security",
     "puppeteer": "^21.3.8"
   }
