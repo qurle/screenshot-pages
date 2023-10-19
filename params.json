@@ -1,0 +1,13 @@
+{
+    "viewports": [
+        "1440x900",
+        "360x900"
+    ],
+    "scale": "2x",
+    "fullPage": false,
+    "pages": [
+        "qurle.net",
+        "telegram.org",
+        "https://ya.ru"
+    ]
+}

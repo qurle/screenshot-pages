@@ -1,0 +1,22 @@
+{
+  "name": "screenshot-pages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qurle/screenshot-pages.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qurle/screenshot-pages/issues"
+  },
+  "homepage": "https://github.com/qurle/screenshot-pages#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "puppeteer": "^21.3.8"
+  }
+}
