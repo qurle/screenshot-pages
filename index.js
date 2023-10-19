@@ -16,7 +16,7 @@ const screenshotPath = './screenshots';
         blocker.enableBlockingInPage(page);
     });
 
-    const links = Array.isArray(params.pages) ? params.pages : params.pages.split('\s')
+    const links = Array.isArray(params.pages) ? params.pages : params.pages.split('/[\s]+/')
 
     for (let link of links) {
 
