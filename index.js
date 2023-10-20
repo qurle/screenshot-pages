@@ -9,12 +9,14 @@ const maxMobileWidth = 480
 const cookieSelectors = params.cookieSelector ? params.cookieSelector :
     `[class*=cookie i], [id*=cookie i]`
 const popUpSelector = params.popUpSelector ? params.popUpSelector :
-    `[class*=modal i], [id*=modal i], [class*=popup i], [id*=popup i], [class*=widget i], [id*=widget i], jdiv`
+    `[class*=modal i], [id*=modal i], [class*=popup i], [id*=popup i], [class*=widget i], [id*=widget i], [class*=marquiz i], [id*=marquiz i], jdiv`
 
 
-function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
+let timeout = 30000
+if (params.waitFor?.endsWith('ms')) timeout = params.waitFor.slice(0, -2)
+else if (params.waitFor?.endsWith('s')) timeout = params.waitFor.slice(0, -1) * 1000
+else if (params.waitFor?.endsWith('m')) timeout = params.waitFor.slice(0, -1) * 60000
+
 
 function c(str) { console.log(str) }
 
@@ -49,12 +51,11 @@ export default async function run() {
         const url = new URL(link)
 
         c(`Opening ${url.hostname}`)
-        await page.goto(link, { waitUntil: 'networkidle2' })
-
-        c(`Timeout: ${params.waitFor ? params.waitFor : 0}`)
-        if (params.waitFor?.endsWith('ms')) await timeout(params.waitFor.slice(0, -2))
-        else if (params.waitFor?.endsWith('s')) await timeout(params.waitFor.slice(0, -1) * 1000)
-        else if (params.waitFor?.endsWith('m')) await timeout(params.waitFor.slice(0, -1) * 60000)
+        try {
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: timeout })
+        } catch {
+            c(`Timeouted in ${timeout}ms, screenshoting as is`)
+        }
 
         c('Hiding cookies')
         if (params.hideCookies) {
@@ -79,6 +80,7 @@ export default async function run() {
             const width = viewport[0]
             const height = viewport[1]
 
+            timeout(1000)
             await page.setViewport({
                 width: Number(viewport[0]),
                 height: Number(viewport[1]),
