@@ -1,4 +1,4 @@
-import { launch as screenshot } from 'puppeteer'
+import { launch } from 'puppeteer'
 import { existsSync, mkdirSync, readdirSync, rmSync } from 'fs'
 import { PuppeteerBlocker } from '@cliqz/adblocker-puppeteer'
 import fetch from 'cross-fetch'
@@ -12,17 +12,23 @@ const popUpSelector = params.popUpSelector ? params.popUpSelector :
     `[class*=modal i], [id*=modal i], [class*=popup i], [id*=popup i], [class*=widget i], [id*=widget i], [class*=marquiz i], [id*=marquiz i], jdiv`
 
 
+function timeoutFor(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+
 let timeout = 30000
 if (params.waitFor?.endsWith('ms')) timeout = params.waitFor.slice(0, -2)
 else if (params.waitFor?.endsWith('s')) timeout = params.waitFor.slice(0, -1) * 1000
 else if (params.waitFor?.endsWith('m')) timeout = params.waitFor.slice(0, -1) * 60000
 
+const headless = params.headless ? params.headless : "new"
 
 function c(str) { console.log(str) }
 
 export default async function run() {
     c('Starting browser')
-    const browser = await screenshot({ headless: "new" })
+    const browser = await launch({ headless: headless })
     const page = await browser.newPage()
 
     if (params.hideAds) {
@@ -52,10 +58,13 @@ export default async function run() {
 
         c(`Opening ${url.hostname}`)
         try {
-            await page.goto(link, { waitUntil: 'networkidle0', timeout: timeout })
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: Math.round(timeout * 1 / 4) })
         } catch {
-            c(`Timeouted in ${timeout}ms, screenshoting as is`)
+            c(`Open timeouted in ${Math.round(timeout * 1 / 4)} ms, screenshoting as is`)
         }
+
+        c(`Giving extra ${Math.round(timeout * 1 / 4)} ms to load after open`)
+        await timeoutFor(Math.round(timeout * 1 / 4))
 
         c('Hiding cookies')
         if (params.hideCookies) {
@@ -80,7 +89,7 @@ export default async function run() {
             const width = viewport[0]
             const height = viewport[1]
 
-            timeout(1000)
+            await timeoutFor(Math.round(timeout * 1 / 4))
             await page.setViewport({
                 width: Number(viewport[0]),
                 height: Number(viewport[1]),
