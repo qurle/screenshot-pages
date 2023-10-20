@@ -1,19 +1,18 @@
-import { launch } from 'puppeteer'
+import { launch as screenshot } from 'puppeteer'
 import { existsSync, mkdirSync } from 'fs'
 import { PuppeteerBlocker } from '@cliqz/adblocker-puppeteer'
 import fetch from 'cross-fetch'
 
-import params from './params.json' with { type: "json" };
+import params from './params.json' with { type: "json" }
 
-const maxMobileWidth = 480;
+const maxMobileWidth = 480
+
 function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-launch()
-
-const launch = async () => {
-    const browser = await launch({ headless: "new" })
+export default async function run() {
+    const browser = await screenshot({ headless: "new" })
     const page = await browser.newPage()
 
     if (params.useAdblock) {
@@ -52,7 +51,7 @@ const launch = async () => {
             const url = new URL(link)
             console.log(`Screenshoting ${url.hostname}${url.pathname} at ${width}×${height}`)
             await page.screenshot({
-                path: `${screenshotPath}/${new URL(link).hostname}@${width}×${height}.${params.format}`,
+                path: `${params.path}/${new URL(link).hostname}@${width}×${height}.${params.format}`,
                 fullPage: params.fullPage
             })
         }
@@ -60,4 +59,4 @@ const launch = async () => {
     await browser.close()
 }
 
-module.exports = { launch }
+run()
