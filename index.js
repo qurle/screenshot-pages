@@ -10,7 +10,9 @@ function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-(async () => {
+launch()
+
+const launch = async () => {
     const browser = await launch({ headless: "new" })
     const page = await browser.newPage()
 
@@ -56,4 +58,6 @@ function timeout(ms) {
         }
     }
     await browser.close()
-})()
+}
+
+module.exports = { launch }
